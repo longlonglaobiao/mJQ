@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <style>
+      #de {
+        background: red;
+        width: 50px;
+        height: 50px;
+      }
+    </style>
+  </head>
+  <div id="de"></div>
+  <script src="./mjq.js"></script>
+  <script>
+    biao("#de").dragable(true);
+    setTimeout(function () {
+      biao("#de").dragable(false);
+    }, 2000);
+  </script>
+</html>
