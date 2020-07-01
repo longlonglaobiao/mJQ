@@ -215,7 +215,6 @@ class JQ {
         if (args[0] in this.that.cssHooks) {
           return this.that.cssHooks[args[0]].get(this[0]);
         }
-
         let res = this.getStyle(this[0], args[0]);
 
         return res;
@@ -299,6 +298,53 @@ class JQ {
   randomInt = function (min = 0, max = 1) {
     // 采取的是四舍五入原则
     return Math.round(Math.random() * (max - min)) + min;
+  };
+
+  // 节流
+  // 三个参数分别是 经过节流处理的函数，延迟时间，是否立即执行，希望传递给 fn 的参数列表
+  throttle = function (fn, delay = 300, start = true, ...arg) {
+    if (typeof fn !== "function") {
+      return;
+    }
+
+    let timer = 0;
+
+    return function () {
+      let that = this;
+      if (timer) {
+        return;
+      }
+
+      timer = setTimeout(
+        () => {
+          fn.apply(that, [...arg]);
+          start = false;
+          timer = false;
+        },
+        start ? 0 : delay
+      );
+    };
+  };
+
+  // 防抖
+  // 三个参数分别是 经过防抖处理的函数，延迟时间，是否立即执行，希望传递给 fn 的参数列表
+  debounce = function (fn, delay = 300, start = true, ...arg) {
+    if (typeof fn !== "function") {
+      return;
+    }
+
+    let timer = null;
+    return function () {
+      let that = this;
+      clearTimeout(timer);
+      timer = setTimeout(
+        () => {
+          fn.apply(that, [...arg]);
+          start = false;
+        },
+        start ? 0 : delay
+      );
+    };
   };
 
   // jquery 扩展

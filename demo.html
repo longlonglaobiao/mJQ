@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <style>
+      #de {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <div id="de">
+    <p>
+      测试段落1
+    </p>
+  </div>
+  <div>
+    <p>
+      测试段落2
+    </p>
+  </div>
+
+  <script src="./mjq.js"></script>
+  <script>
+    biao(function () {
+      biao("#de").css("color", "red");
+    });
+  </script>
+</html>
